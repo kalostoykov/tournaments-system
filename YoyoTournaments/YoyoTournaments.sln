@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoyoTournaments.WebClient",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoyoTournaments.WebClient.Tests", "YoyoTournaments.WebClient.Tests\YoyoTournaments.WebClient.Tests.csproj", "{F7617D92-83CF-4EBD-84D9-95997579FE18}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoyoTournaments.Models", "YoyoTournaments.Models\YoyoTournaments.Models.csproj", "{757E38A9-CD49-4049-A811-9EB3CB88CD45}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoyoTournaments.Data", "YoyoTournaments.Data\YoyoTournaments.Data.csproj", "{F7B6AD02-E89B-487C-A1DF-CFA13795E8A5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{F7617D92-83CF-4EBD-84D9-95997579FE18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F7617D92-83CF-4EBD-84D9-95997579FE18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F7617D92-83CF-4EBD-84D9-95997579FE18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{757E38A9-CD49-4049-A811-9EB3CB88CD45}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757E38A9-CD49-4049-A811-9EB3CB88CD45}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757E38A9-CD49-4049-A811-9EB3CB88CD45}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757E38A9-CD49-4049-A811-9EB3CB88CD45}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7B6AD02-E89B-487C-A1DF-CFA13795E8A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7B6AD02-E89B-487C-A1DF-CFA13795E8A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7B6AD02-E89B-487C-A1DF-CFA13795E8A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7B6AD02-E89B-487C-A1DF-CFA13795E8A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

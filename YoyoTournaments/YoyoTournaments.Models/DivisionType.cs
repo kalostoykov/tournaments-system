@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace YoyoTournaments.Models
 {
-    public class Country
+    public class DivisionType
     {
         public int Id { get; set; }
 
         public string Name { get; set; }
+
+        public string Description { get; set; }
     }
 }

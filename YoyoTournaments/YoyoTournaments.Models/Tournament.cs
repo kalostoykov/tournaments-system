@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YoyoTournaments.Models.Contracts;
 
 namespace YoyoTournaments.Models
 {
-    public class Tournament : ITournament
+    public class Tournament
     {
+        private ICollection<Division> divisionsInTournament;
+
+        public Tournament()
+        {
+            this.divisionsInTournament = new HashSet<Division>();
+        }
+
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -17,14 +20,24 @@ namespace YoyoTournaments.Models
 
         public DateTime EndDate { get; set; }
 
-        public virtual ICollection<IPlayer> OneAPlayers { get; set; }
+        public int CountryId { get; set; }
 
-        public virtual ICollection<IPlayer> TwoAPlayers { get; set; }
+        public virtual Country Country { get; set; }
 
-        public virtual ICollection<IPlayer> ThreeAPlayers { get; set; }
+        public string Place { get; set; }
 
-        public virtual ICollection<IPlayer> FourAPlayers { get; set; }
+        public virtual ICollection<Division> DivisionsInTournament
+        {
+            get
+            {
+                return this.divisionsInTournament;
+            }
 
-        public virtual ICollection<IPlayer> FiveAPlayers { get; set; }
+            set
+            {
+                this.divisionsInTournament = value;
+            }
+        }
+
     }
 }
