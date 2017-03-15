@@ -17,6 +17,10 @@ namespace YoyoTournaments.Data.Contracts
 
         IDbSet<Country> Countries { get; set; }
 
+        IDbSet<DivisionType> DivisionTypes { get; set; }
+
+        IDbSet<Division> Divisions { get; set; }
+
         int SaveChanges();
     }
 }
