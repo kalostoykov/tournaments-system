@@ -61,6 +61,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\YoyoTournaments.Authentication\YoyoTournaments.Authentication.csproj">
+      <Project>{3F01F741-39EE-4146-A62C-5A39979F953D}</Project>
+      <Name>YoyoTournaments.Authentication</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YoyoTournaments.Models\YoyoTournaments.Models.csproj">
       <Project>{757E38A9-CD49-4049-A811-9EB3CB88CD45}</Project>
       <Name>YoyoTournaments.Models</Name>

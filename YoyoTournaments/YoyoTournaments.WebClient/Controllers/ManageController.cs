@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using YoyoTournaments.WebClient.Models;
+using YoyoTournaments.Authentication;
 
 namespace YoyoTournaments.WebClient.Controllers
 {
@@ -32,9 +33,9 @@ namespace YoyoTournaments.WebClient.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 

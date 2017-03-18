@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using YoyoTournaments.Authentication;
 
 namespace YoyoTournaments.Models
 {
@@ -33,5 +35,9 @@ namespace YoyoTournaments.Models
                 this.divisions = value;
             }
         }
+
+        //public Guid UserId { get; set; }
+
+        //public ApplicationUser User { get; set; }
     }
 }
