@@ -21,8 +21,6 @@ namespace YoyoTournaments.Data
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<YoyoTournamentsDbContext, Configuration>());
         }
 
-        public IDbSet<Player> Players { get; set; }
-
         public IDbSet<Tournament> Tournaments { get; set; }
 
         public IDbSet<Country> Countries { get; set; }

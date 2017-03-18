@@ -11,8 +11,6 @@ namespace YoyoTournaments.Data.Contracts
 {
     public interface IYoyoTournamentsDbContext
     {
-        IDbSet<Player> Players { get; set; }
-
         IDbSet<Tournament> Tournaments { get; set; }
 
         IDbSet<Country> Countries { get; set; }

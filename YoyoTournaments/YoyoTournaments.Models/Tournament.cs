@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace YoyoTournaments.Models
 {
@@ -12,6 +13,7 @@ namespace YoyoTournaments.Models
             this.divisionsInTournament = new HashSet<Division>();
         }
 
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -20,7 +22,7 @@ namespace YoyoTournaments.Models
 
         public DateTime EndDate { get; set; }
 
-        public int CountryId { get; set; }
+        public Guid CountryId { get; set; }
 
         public virtual Country Country { get; set; }
 

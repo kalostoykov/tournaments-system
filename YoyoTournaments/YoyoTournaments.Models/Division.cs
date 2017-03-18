@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,28 +9,34 @@ namespace YoyoTournaments.Models
 {
     public class Division
     {
-        private ICollection<Player> players;
+        private ICollection<ApplicationUser> users;
 
         public Division()
         {
-            this.players = new HashSet<Player>();
+            this.users = new HashSet<ApplicationUser>();
         }
 
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid Id { get; set; }
 
         public int DivisionTypeId { get; set; }
 
         public virtual DivisionType DivisionType { get; set; }
 
-        public virtual ICollection<Player> Players
+        public virtual ICollection<ApplicationUser> Users
         {
             get
             {
-                return this.players;
+                return this.users;
+            }
+
+            set
+            {
+                this.users = value;
             }
         }
 
-        public int TournamentId { get; set; }
+        public Guid TournamentId { get; set; }
 
         public virtual Tournament Tournament { get; set; }
     }

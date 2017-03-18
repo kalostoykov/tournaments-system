@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using YoyoTournaments.WebClient.Models;
 using YoyoTournaments.Authentication;
+using YoyoTournaments.Models;
 
 namespace YoyoTournaments.WebClient.Controllers
 {
