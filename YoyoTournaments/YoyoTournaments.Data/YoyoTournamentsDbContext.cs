@@ -1,20 +1,22 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YoyoTournaments.Authentication;
 using YoyoTournaments.Data.Contracts;
 using YoyoTournaments.Data.Migrations;
 using YoyoTournaments.Models;
 
 namespace YoyoTournaments.Data
 {
-    public class YoyoTournamentsDbContext : DbContext, IYoyoTournamentsDbContext
+    public class YoyoTournamentsDbContext : IdentityDbContext<ApplicationUser>, IYoyoTournamentsDbContext
     {
         public YoyoTournamentsDbContext()
-            : base("DefaultConnectionTest")
+            : base("DefaultConnection")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<YoyoTournamentsDbContext, Configuration>());
         }

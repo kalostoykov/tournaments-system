@@ -36,8 +36,8 @@ namespace YoyoTournaments.Models
             }
         }
 
-        //public Guid UserId { get; set; }
+        public Guid UserId { get; set; }
 
-        //public ApplicationUser User { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }
