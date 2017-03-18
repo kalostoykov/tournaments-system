@@ -1,2 +1,2 @@
 # tournaments-system
-A soccer tournament system with ASP.NET MVC.
+A yoyo tournament system with ASP.NET MVC.
