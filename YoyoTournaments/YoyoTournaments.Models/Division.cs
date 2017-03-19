@@ -19,7 +19,7 @@ namespace YoyoTournaments.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
-        public int DivisionTypeId { get; set; }
+        public Guid DivisionTypeId { get; set; }
 
         public virtual DivisionType DivisionType { get; set; }
 

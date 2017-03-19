@@ -20,7 +20,8 @@ namespace YoyoTournaments.Models
 
         public string LastName { get; set; }
 
-        public Guid CountryId { get; set; }
+        //TODO: remove the ? after the registration page is complete
+        public Guid? CountryId { get; set; }
 
         public virtual Country Country { get; set; }
 
