@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace YoyoTournaments.Common
+﻿namespace YoyoTournaments.Common
 {
     public static class Validation
     {
         public const int MinNameLength = 3;
         public const int MaxNameLength = 50;
 
-        public const int MinDivisionNameLength = 3;
+        public const int MinDivisionNameLength = 1;
         public const int MaxDivisionNameLength = 20;
+
+        public const int MinDivisionDescriptionLength = 3;
+        public const int MaxDivisionDescriptionLength = 500;
 
         public const int MinCountryNameLength = 3;
         public const int MaxCountryNameLength = 120;
