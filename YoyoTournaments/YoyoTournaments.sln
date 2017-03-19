@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoyoTournaments.Data", "Yoy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoyoTournaments.Authentication", "YoyoTournaments.Authentication\YoyoTournaments.Authentication.csproj", "{3F01F741-39EE-4146-A62C-5A39979F953D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YoyoTournaments.Common", "YoyoTournaments.Common\YoyoTournaments.Common.csproj", "{3E39F4D0-E57B-4F11-960D-8CD09D5B7A46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{3F01F741-39EE-4146-A62C-5A39979F953D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F01F741-39EE-4146-A62C-5A39979F953D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F01F741-39EE-4146-A62C-5A39979F953D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E39F4D0-E57B-4F11-960D-8CD09D5B7A46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E39F4D0-E57B-4F11-960D-8CD09D5B7A46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E39F4D0-E57B-4F11-960D-8CD09D5B7A46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E39F4D0-E57B-4F11-960D-8CD09D5B7A46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
