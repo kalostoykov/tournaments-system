@@ -2,8 +2,10 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using YoyoTournaments.Common;
 
 namespace YoyoTournaments.Models
 {
@@ -16,8 +18,12 @@ namespace YoyoTournaments.Models
             this.divisions = new HashSet<Division>();
         }
 
+        [MinLength(Validation.MinNameLength)]
+        [MaxLength(Validation.MaxNameLength)]
         public string FirstName { get; set; }
 
+        [MinLength(Validation.MinNameLength)]
+        [MaxLength(Validation.MaxNameLength)]
         public string LastName { get; set; }
 
         //TODO: remove the ? after the registration page is complete
