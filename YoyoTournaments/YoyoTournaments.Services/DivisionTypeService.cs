@@ -11,12 +11,6 @@ namespace YoyoTournaments.Services
     {
         private readonly IYoyoTournamentsDbContext dbContext;
 
-        // Just for testing. After Ninject is ready to go delete this constructor.
-        public DivisionTypeService()
-        {
-            this.dbContext = new YoyoTournamentsDbContext();
-        }
-
         public DivisionTypeService(IYoyoTournamentsDbContext dbContext)
         {
             this.dbContext = dbContext;

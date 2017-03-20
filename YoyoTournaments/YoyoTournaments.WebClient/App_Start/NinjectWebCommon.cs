@@ -10,6 +10,10 @@ namespace YoyoTournaments.WebClient.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using Services.Contracts;
+    using Services;
+    using Data.Contracts;
+    using Data;
 
     public static class NinjectWebCommon
     {
@@ -61,6 +65,8 @@ namespace YoyoTournaments.WebClient.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            kernel.Bind<IYoyoTournamentsDbContext>().To<YoyoTournamentsDbContext>();
+            kernel.Bind<IDivisionTypeService>().To<DivisionTypeService>();
         }
     }
 }
