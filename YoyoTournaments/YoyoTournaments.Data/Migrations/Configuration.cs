@@ -35,29 +35,35 @@ namespace YoyoTournaments.Data.Migrations
             //    new Country { Name = "England" }
             //};
 
-            var divisions = new List<DivisionType>
+            if (!context.DivisionTypes.Any())
             {
-                new DivisionType {
-                    Name = "1A",
-                    Description = "String trick freestyle with one long-spinning yoyo."
-                },
-                new DivisionType {
-                    Name = "2A",
-                    Description = "Looping freestyle with two responsive yoyos."
-                },
-                new DivisionType {
-                    Name = "3A",
-                    Description = "String trick freestyle with two long-spinning yoyos."
-                },
-                new DivisionType {
-                    Name = "4A",
-                    Description = "Freestyle with long-spinning yoyo not attached to the string. Also called \"offstring\"."
-                },
-                new DivisionType {
-                    Name = "5A",
-                    Description = "Freestyle with long-spinning yoyo not attached to player’s hand. Counterweight is tied to end of string. Also called \"counterweight\" or \"freehand\"."
-                }
-            };
+                var divisions = new List<DivisionType>
+                {
+                    new DivisionType {
+                        Name = "1A",
+                        Description = "String trick freestyle with one long-spinning yoyo."
+                    },
+                    new DivisionType {
+                        Name = "2A",
+                        Description = "Looping freestyle with two responsive yoyos."
+                    },
+                    new DivisionType {
+                        Name = "3A",
+                        Description = "String trick freestyle with two long-spinning yoyos."
+                    },
+                    new DivisionType {
+                        Name = "4A",
+                        Description = "Freestyle with long-spinning yoyo not attached to the string. Also called \"offstring\"."
+                    },
+                    new DivisionType {
+                        Name = "5A",
+                        Description = "Freestyle with long-spinning yoyo not attached to player’s hand. Counterweight is tied to end of string. Also called \"counterweight\" or \"freehand\"."
+                    }
+                };
+
+                divisions.ForEach(d => context.DivisionTypes.Add(d));
+                context.SaveChanges();
+            }
 
             //var testPlayer = new ApplicationUser
             //{
@@ -97,8 +103,6 @@ namespace YoyoTournaments.Data.Migrations
             //    TournamentId = 1
             //};
 
-            divisions.ForEach(d => context.DivisionTypes.Add(d));
-            context.SaveChanges();
 
             //testDivisionInTournament.Users.Add(testPlayer);
 

@@ -9,6 +9,8 @@ namespace YoyoTournaments.Services.Contracts
 {
     public interface IDivisionTypeService
     {
-        IEnumerable<DivisionType> GetAllDivisions();
+        IEnumerable<DivisionType> GetAllDivisionTypes();
+
+        DivisionType GetDivisionTypeById(Guid? id);
     }
 }

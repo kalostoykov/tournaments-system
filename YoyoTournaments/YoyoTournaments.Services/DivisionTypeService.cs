@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Bytes2you.Validation;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using YoyoTournaments.Data;
 using YoyoTournaments.Data.Contracts;
@@ -16,9 +18,24 @@ namespace YoyoTournaments.Services
             this.dbContext = dbContext;
         }
 
-        public IEnumerable<DivisionType> GetAllDivisions()
+        public IEnumerable<DivisionType> GetAllDivisionTypes()
         {
-            return this.dbContext.DivisionTypes.ToList();
+            var result =  this.dbContext.DivisionTypes.ToList();
+
+            return result;
+        }
+
+        public DivisionType GetDivisionTypeById(Guid? id)
+        {
+            if (id == null)
+            {
+                return null;
+            }
+
+            var result = this.dbContext.DivisionTypes
+                .Find(id);
+
+            return result;
         }
     }
 }

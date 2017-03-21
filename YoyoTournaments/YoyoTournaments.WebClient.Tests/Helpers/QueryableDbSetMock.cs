@@ -9,11 +9,6 @@ namespace YoyoTournaments.WebClient.Tests.Helpers
     {
         public static Mock<IDbSet<T>> GetQueryableMockDbSet<T>(IEnumerable<T> sourceList) where T : class
         {
-            return GetQueryableMockDbSet(sourceList.ToArray());
-        }
-
-        public static Mock<IDbSet<T>> GetQueryableMockDbSet<T>(params T[] sourceList) where T : class
-        {
             var queryable = sourceList.AsQueryable();
 
             var dbSet = new Mock<IDbSet<T>>();
