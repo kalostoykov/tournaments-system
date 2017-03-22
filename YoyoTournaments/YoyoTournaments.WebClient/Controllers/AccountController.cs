@@ -11,6 +11,9 @@ using Microsoft.Owin.Security;
 using YoyoTournaments.WebClient.Models;
 using YoyoTournaments.Authentication;
 using YoyoTournaments.Models;
+using YoyoTournaments.Services;
+using YoyoTournaments.Services.Contracts;
+using YoyoTournaments.Data;
 
 namespace YoyoTournaments.WebClient.Controllers
 {
@@ -19,12 +22,14 @@ namespace YoyoTournaments.WebClient.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private readonly ICountryService countryService;
 
-        public AccountController()
+        public AccountController(ICountryService countryService)
         {
+            this.countryService = countryService;
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -141,7 +146,15 @@ namespace YoyoTournaments.WebClient.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var countries = this.countryService.GetAllCountries().ToList();
+
+            var viewModel = new RegisterViewModel()
+            {
+                Countries = countries
+            };
+
+
+            return View(viewModel);
         }
 
         //
@@ -153,7 +166,15 @@ namespace YoyoTournaments.WebClient.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    CountryId = model.SelectedCountryId
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using YoyoTournaments.Common;
+using YoyoTournaments.Models;
 
 namespace YoyoTournaments.WebClient.Models
 {
@@ -79,6 +82,20 @@ namespace YoyoTournaments.WebClient.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [StringLength(Validation.MaxNameLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Validation.MinNameLength)]
+        [Display(Name = "First Name")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [StringLength(Validation.MaxNameLength, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = Validation.MinNameLength)]
+        [Display(Name = "Last Name")]
+        public string LastName { get; set; }
+
+        public List<Country> Countries { get; set; }
+
+        public Guid SelectedCountryId { get; set; }
     }
 
     public class ResetPasswordViewModel

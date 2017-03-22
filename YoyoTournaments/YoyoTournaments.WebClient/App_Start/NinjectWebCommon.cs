@@ -65,8 +65,9 @@ namespace YoyoTournaments.WebClient.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IYoyoTournamentsDbContext>().To<YoyoTournamentsDbContext>();
-            kernel.Bind<IDivisionTypeService>().To<DivisionTypeService>();
+            kernel.Bind<IYoyoTournamentsDbContext>().To<YoyoTournamentsDbContext>().InRequestScope();
+            kernel.Bind<IDivisionTypeService>().To<DivisionTypeService>().InRequestScope();
+            kernel.Bind<ICountryService>().To<CountryService>().InRequestScope();
         }
     }
 }

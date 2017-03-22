@@ -274,6 +274,10 @@
       <Project>{3f01f741-39ee-4146-a62c-5a39979f953d}</Project>
       <Name>YoyoTournaments.Authentication</Name>
     </ProjectReference>
+    <ProjectReference Include="..\YoyoTournaments.Common\YoyoTournaments.Common.csproj">
+      <Project>{3E39F4D0-E57B-4F11-960D-8CD09D5B7A46}</Project>
+      <Name>YoyoTournaments.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\YoyoTournaments.Data\YoyoTournaments.Data.csproj">
       <Project>{F7B6AD02-E89B-487C-A1DF-CFA13795E8A5}</Project>
       <Name>YoyoTournaments.Data</Name>
