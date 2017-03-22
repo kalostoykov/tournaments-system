@@ -104,7 +104,7 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
         }
 
         [TestMethod]
-        public void ReIEnumerableCollection()
+        public void ReturnIEnumerableCollection()
         {
             //Arrange
             var divisionTypes = new List<DivisionType>();
