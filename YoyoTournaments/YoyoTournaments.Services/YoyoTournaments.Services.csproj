@@ -61,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\ICountryService.cs" />
     <Compile Include="Contracts\IDivisionTypeService.cs" />
+    <Compile Include="CountryService.cs" />
     <Compile Include="DivisionTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

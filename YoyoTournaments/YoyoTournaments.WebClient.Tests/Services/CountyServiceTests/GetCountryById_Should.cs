@@ -2,23 +2,21 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using YoyoTournaments.Models;
-using Moq;
 using YoyoTournaments.Data.Contracts;
-using YoyoTournaments.WebClient.Tests.Helpers;
+using Moq;
 using YoyoTournaments.Services;
-using System.Linq;
-using System.Data.Entity;
+using YoyoTournaments.Models;
+using YoyoTournaments.WebClient.Tests.Helpers;
 
-namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
+namespace YoyoTournaments.WebClient.Tests.Services.CountyServiceTests
 {
     /// <summary>
-    /// Summary description for GetAllDivisionTypes_Should
+    /// Summary description for GetCountryById_Should
     /// </summary>
     [TestClass]
-    public class GetAllDivisionTypes_Should
+    public class GetCountryById_Should
     {
-        public GetAllDivisionTypes_Should()
+        public GetCountryById_Should()
         {
             //
             // TODO: Add constructor logic here
@@ -64,62 +62,64 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
         // public void MyTestCleanup() { }
         //
         #endregion
-
         [TestMethod]
-        public void ReturnOneDivision()
+        public void ReturnNull_WhenIdIsNotProvided()
         {
             //Arrange
-            DivisionType divisionType = new DivisionType() { Name = "Test", Description = "Test" };
-            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(new List<DivisionType>() { divisionType });
-
+            Guid? id = null;
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
 
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
+            var countryService = new CountryService(yoyoTournamentsDbContextMock.Object);
 
             //Act
-            var result = divisionTypeService.GetAllDivisionTypes().ToList();
+            var result = countryService.GetCountryById(id);
 
             //Assert
-            Assert.AreEqual(1, result.Count);
+            Assert.IsNull(result);
         }
 
         [TestMethod]
-        public void ReturnEmptyCollection_WhenThenThereAreNoResults()
+        public void ReturnCountryWithProvidedId()
         {
             //Arrange
-            var divisionTypes = new List<DivisionType>();
-            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(divisionTypes);
+            Guid id = Guid.NewGuid();
+            Country expectedCountry = new Country() { Id= id, Name = "Bulgaria" };
+
+            var countryDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(new List<Country>() { expectedCountry });
+            countryDbSetMock.Setup(x => x.Find(expectedCountry.Id)).Returns(expectedCountry);
 
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
+            yoyoTournamentsDbContextMock.Setup(x => x.Countries).Returns(countryDbSetMock.Object);
 
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
+            var countryService = new CountryService(yoyoTournamentsDbContextMock.Object);
 
             //Act
-            var result = divisionTypeService.GetAllDivisionTypes().ToList();
+            var actualCountry = countryService.GetCountryById(id);
 
             //Assert
-            Assert.AreEqual(0, result.Count);
+            Assert.AreSame(expectedCountry, actualCountry);
         }
 
         [TestMethod]
-        public void ReturnIEnumerableCollectionOfDivisionTypes()
+        public void ReturnNullWhenCountryWithIdIsNotFound()
         {
             //Arrange
-            var divisionTypes = new List<DivisionType>();
-            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(divisionTypes);
+            Guid id = Guid.NewGuid();
+            Country expectedCountry = new Country() { Id= id, Name = "Bulgaria" };
+
+            var countryDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(new List<Country>() { expectedCountry });
+            countryDbSetMock.Setup(x => x.Find(expectedCountry.Id)).Returns((Country)null);
 
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
+            yoyoTournamentsDbContextMock.Setup(x => x.Countries).Returns(countryDbSetMock.Object);
 
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
+            var countryService = new CountryService(yoyoTournamentsDbContextMock.Object);
 
             //Act
-            var result = divisionTypeService.GetAllDivisionTypes();
+            var actualCountry = countryService.GetCountryById(id);
 
             //Assert
-            Assert.IsInstanceOfType(result, typeof(IEnumerable<DivisionType>));
+            Assert.IsNull(actualCountry);
         }
     }
 }

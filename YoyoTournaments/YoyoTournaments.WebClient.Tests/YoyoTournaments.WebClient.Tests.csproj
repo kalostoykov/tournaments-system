@@ -107,6 +107,8 @@
     <Compile Include="Helpers\QueryableDbSetMock.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Services\CountyServiceTests\GetAllCountries_Should.cs" />
+    <Compile Include="Services\CountyServiceTests\GetCountryById_Should.cs" />
     <Compile Include="Services\DivisionTypeServiceTests\GetAllDivisionTypes_Should.cs" />
     <Compile Include="Services\DivisionTypeServiceTests\GetDivisionTypeById_Should.cs" />
   </ItemGroup>

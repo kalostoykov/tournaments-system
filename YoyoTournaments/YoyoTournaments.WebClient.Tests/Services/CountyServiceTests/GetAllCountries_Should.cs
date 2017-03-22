@@ -2,23 +2,22 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using YoyoTournaments.Models;
-using Moq;
-using YoyoTournaments.Data.Contracts;
-using YoyoTournaments.WebClient.Tests.Helpers;
 using YoyoTournaments.Services;
+using Moq;
+using YoyoTournaments.Models;
+using YoyoTournaments.WebClient.Tests.Helpers;
+using YoyoTournaments.Data.Contracts;
 using System.Linq;
-using System.Data.Entity;
 
-namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
+namespace YoyoTournaments.WebClient.Tests.Services.CountyServiceTests
 {
     /// <summary>
-    /// Summary description for GetAllDivisionTypes_Should
+    /// Summary description for GetAllCountries_Should
     /// </summary>
     [TestClass]
-    public class GetAllDivisionTypes_Should
+    public class GetAllCountries_Should
     {
-        public GetAllDivisionTypes_Should()
+        public GetAllCountries_Should()
         {
             //
             // TODO: Add constructor logic here
@@ -66,19 +65,19 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
         #endregion
 
         [TestMethod]
-        public void ReturnOneDivision()
+        public void ReturnOneCountry()
         {
             //Arrange
-            DivisionType divisionType = new DivisionType() { Name = "Test", Description = "Test" };
-            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(new List<DivisionType>() { divisionType });
+            Country country = new Country() { Name = "Bulgaria" };
+            var countriesDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(new List<Country>() { country });
 
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
+            yoyoTournamentsDbContextMock.Setup(x => x.Countries).Returns(countriesDbSetMock.Object);
 
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
+            var countryService = new CountryService(yoyoTournamentsDbContextMock.Object);
 
             //Act
-            var result = divisionTypeService.GetAllDivisionTypes().ToList();
+            var result = countryService.GetAllCountries().ToList();
 
             //Assert
             Assert.AreEqual(1, result.Count);
@@ -88,38 +87,38 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
         public void ReturnEmptyCollection_WhenThenThereAreNoResults()
         {
             //Arrange
-            var divisionTypes = new List<DivisionType>();
-            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(divisionTypes);
+            var countries = new List<Country>();
+            var countriesDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(countries);
 
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
+            yoyoTournamentsDbContextMock.Setup(x => x.Countries).Returns(countriesDbSetMock.Object);
 
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
+            var countryService = new CountryService(yoyoTournamentsDbContextMock.Object);
 
             //Act
-            var result = divisionTypeService.GetAllDivisionTypes().ToList();
+            var result = countryService.GetAllCountries().ToList();
 
             //Assert
             Assert.AreEqual(0, result.Count);
         }
 
         [TestMethod]
-        public void ReturnIEnumerableCollectionOfDivisionTypes()
+        public void ReturnIEnumerableCollectionOfCountries()
         {
             //Arrange
-            var divisionTypes = new List<DivisionType>();
-            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(divisionTypes);
+            var countries = new List<Country>();
+            var countriesDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(countries);
 
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
+            yoyoTournamentsDbContextMock.Setup(x => x.Countries).Returns(countriesDbSetMock.Object);
 
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
+            var countryService = new CountryService(yoyoTournamentsDbContextMock.Object);
 
             //Act
-            var result = divisionTypeService.GetAllDivisionTypes();
+            var result = countryService.GetAllCountries().ToList();
 
             //Assert
-            Assert.IsInstanceOfType(result, typeof(IEnumerable<DivisionType>));
+            Assert.IsInstanceOfType(result, typeof(IEnumerable<Country>));
         }
     }
 }
