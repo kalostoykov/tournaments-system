@@ -29,11 +29,49 @@ namespace YoyoTournaments.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            //var countries = new List<Country>
-            //{
-            //    new Country { Name = "Bulgaria" },
-            //    new Country { Name = "England" }
-            //};
+            if (!context.Countries.Any())
+            {
+                var countries = new string[]
+                {
+                     "Austria" ,
+                     "Belgium" ,
+                     "Bulgaria",
+                     "Croatia" ,
+                     "Cyprus" ,
+                     "Czech Republic" ,
+                     "Denmark" ,
+                     "Estonia" ,
+                     "Finland" ,
+                     "France" ,
+                     "Gernamy" ,
+                     "Greece" ,
+                     "Hungary" ,
+                     "Ireland" ,
+                     "Italy" ,
+                     "Latvia" ,
+                     "Lithuania" ,
+                     "Luxembourg" ,
+                     "Malta" ,
+                     "Netherlands" ,
+                     "Poland" ,
+                     "Portugal" ,
+                     "Romania" ,
+                     "Slovakia" ,
+                     "Slovenia" ,
+                     "Spain" ,
+                     "Sweden" ,
+                     "United Kingdom"
+                };
+
+                foreach (string country in countries)
+                {
+                    Country c = new Country() { Name = country };
+
+                    context.Countries.Add(c);
+                }
+
+                context.SaveChanges();
+            }
 
             if (!context.DivisionTypes.Any())
             {
