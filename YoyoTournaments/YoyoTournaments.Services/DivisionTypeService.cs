@@ -15,6 +15,8 @@ namespace YoyoTournaments.Services
 
         public DivisionTypeService(IYoyoTournamentsDbContext dbContext)
         {
+            Guard.WhenArgument(dbContext, "dbContext").IsNull().Throw();
+
             this.dbContext = dbContext;
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,8 @@ namespace YoyoTournaments.Services
 
         public CountryService(IYoyoTournamentsDbContext dbContext)
         {
+            Guard.WhenArgument(dbContext, "dbContext").IsNull().Throw();
+
             this.dbContext = dbContext;
         }
 
