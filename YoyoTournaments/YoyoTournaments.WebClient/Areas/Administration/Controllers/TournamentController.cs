@@ -46,6 +46,11 @@ namespace YoyoTournaments.WebClient.Areas.Administration.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(TournamentCreateFormViewModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
             this.tournamentService.CreateTournament(model.Name, model.Place, model.StartDate, model.EndDate, model.SelectedCountryId);
 
             return Redirect("~/Home/Index");
