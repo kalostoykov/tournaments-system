@@ -29,13 +29,13 @@ namespace YoyoTournaments.Services
 
         public DivisionType GetDivisionTypeById(Guid? id)
         {
-            if (id == null)
-            {
-                return null;
-            }
+            DivisionType result = null;
 
-            var result = this.dbContext.DivisionTypes
-                .Find(id);
+            if (id != null)
+            {
+                result = this.dbContext.DivisionTypes
+                    .Find(id);
+            }
 
             return result;
         }

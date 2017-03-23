@@ -30,13 +30,13 @@ namespace YoyoTournaments.Services
 
         public Country GetCountryById(Guid? id)
         {
-            if (id == null)
-            {
-                return null;
-            }
+            Country result = null;
 
-            var result = this.dbContext.Countries
-                .Find(id);
+            if (id != null)
+            {
+                result = this.dbContext.Countries
+                 .Find(id);
+            }
 
             return result;
         }
