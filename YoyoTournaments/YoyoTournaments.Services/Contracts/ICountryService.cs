@@ -11,6 +11,6 @@ namespace YoyoTournaments.Services.Contracts
     {
         IEnumerable<Country> GetAllCountries();
 
-        Country GetCountryById(Guid? id);
+        Country GetCountryById(Guid id);
     }
 }

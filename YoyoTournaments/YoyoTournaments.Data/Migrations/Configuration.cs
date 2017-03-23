@@ -103,43 +103,26 @@ namespace YoyoTournaments.Data.Migrations
                 context.SaveChanges();
             }
 
-            //var testPlayer = new ApplicationUser
-            //{
-            //    FirstName = "Test",
-            //    LastName = "Testov",
-            //    CountryId = 1
-            //};
+            if (!context.Tournaments.Any())
+            {
+                //var testTournament = new Tournament
+                //{
+                //    Name = "YYC Test",
+                //    CountryId = new Guid("313B05CC-D00F-E711-82BB-F0761CBCB6A3"),
+                //    Place = "Test place",
+                //    StartDate = DateTime.Now,
+                //    EndDate = DateTime.Now,
+                //};
 
-            //var players = new List<ApplicationUser>
-            //{
-            //    testPlayer,
-            //    new ApplicationUser
-            //    {
-            //        FirstName = "Test2",
-            //        LastName = "Testov2",
-            //        CountryId = 1
-            //    },
-            //    new ApplicationUser
-            //    {
-            //        FirstName = "Test3",
-            //        LastName = "Testov3",
-            //        CountryId = 2
-            //    }
-            //};
+                //context.Tournaments.Add(testTournament);
 
-            //var testTournament = new Tournament
-            //{
-            //    Name = "YYC Test",
-            //    CountryId = 1,
-            //    Place = "Test place",
-            //    StartDate = DateTime.Now,
-            //    EndDate = DateTime.Now,
-            //};
+                //context.SaveChanges();
+            }
 
             //var testDivisionInTournament = new Division {
             //    DivisionTypeId = 1,
             //    TournamentId = 1
-            //};
+            //}
 
 
             //testDivisionInTournament.Users.Add(testPlayer);

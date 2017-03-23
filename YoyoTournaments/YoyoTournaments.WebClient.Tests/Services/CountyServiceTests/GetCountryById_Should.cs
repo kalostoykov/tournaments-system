@@ -62,21 +62,21 @@ namespace YoyoTournaments.WebClient.Tests.Services.CountyServiceTests
         // public void MyTestCleanup() { }
         //
         #endregion
-        [TestMethod]
-        public void ReturnNull_WhenIdIsNotProvided()
-        {
-            //Arrange
-            Guid? id = null;
-            var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
+        //[TestMethod]
+        //public void ReturnNull_WhenIdIsNotProvided()
+        //{
+        //    //Arrange
+        //    Guid? id = null;
+        //    var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
 
-            var countryService = new CountryService(yoyoTournamentsDbContextMock.Object);
+        //    var countryService = new CountryService(yoyoTournamentsDbContextMock.Object);
 
-            //Act
-            var result = countryService.GetCountryById(id);
+        //    //Act
+        //    var result = countryService.GetCountryById(id);
 
-            //Assert
-            Assert.IsNull(result);
-        }
+        //    //Assert
+        //    Assert.IsNull(result);
+        //}
 
         [TestMethod]
         public void ReturnCountryWithProvidedId()

@@ -62,10 +62,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICountryService.cs" />
+    <Compile Include="Contracts\IDivisionService.cs" />
     <Compile Include="Contracts\IDivisionTypeService.cs" />
+    <Compile Include="Contracts\ITournamentService.cs" />
     <Compile Include="CountryService.cs" />
+    <Compile Include="DivisionService.cs" />
     <Compile Include="DivisionTypeService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TournamentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

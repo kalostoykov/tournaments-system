@@ -68,6 +68,8 @@ namespace YoyoTournaments.WebClient.App_Start
             kernel.Bind<IYoyoTournamentsDbContext>().To<YoyoTournamentsDbContext>().InRequestScope();
             kernel.Bind<IDivisionTypeService>().To<DivisionTypeService>().InRequestScope();
             kernel.Bind<ICountryService>().To<CountryService>().InRequestScope();
+            kernel.Bind<IDivisionService>().To<DivisionService>().InRequestScope();
+            kernel.Bind<ITournamentService>().To<TournamentService>().InRequestScope();
         }
     }
 }

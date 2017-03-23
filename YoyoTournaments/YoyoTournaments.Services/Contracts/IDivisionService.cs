@@ -7,10 +7,8 @@ using YoyoTournaments.Models;
 
 namespace YoyoTournaments.Services.Contracts
 {
-    public interface IDivisionTypeService
+    public interface IDivisionService
     {
-        IEnumerable<DivisionType> GetAllDivisionTypes();
-
-        DivisionType GetDivisionTypeById(Guid id);
+        int CreateDivisionsForTournament(Guid tournamentId);
     }
 }

@@ -27,7 +27,7 @@ namespace YoyoTournaments.Services
             return result;
         }
 
-        public DivisionType GetDivisionTypeById(Guid? id)
+        public DivisionType GetDivisionTypeById(Guid id)
         {
             DivisionType result = null;
 

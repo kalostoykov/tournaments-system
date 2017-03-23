@@ -28,7 +28,7 @@ namespace YoyoTournaments.Services
             return result;
         }
 
-        public Country GetCountryById(Guid? id)
+        public Country GetCountryById(Guid id)
         {
             Country result = null;
 

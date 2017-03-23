@@ -63,21 +63,21 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
         //
         #endregion
 
-        [TestMethod]
-        public void ReturnNull_WhenIdIsNotProvided()
-        {
-            //Arrange
-            Guid? id = null;
-            var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
+        //[TestMethod]
+        //public void ReturnNull_WhenIdIsNotProvided()
+        //{
+        //    //Arrange
+        //    Guid? id = null;
+        //    var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
 
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
+        //    var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
 
-            //Act
-            var result = divisionTypeService.GetDivisionTypeById(id);
+        //    //Act
+        //    var result = divisionTypeService.GetDivisionTypeById(id);
 
-            //Assert
-            Assert.IsNull(result);
-        }
+        //    //Assert
+        //    Assert.IsNull(result);
+        //}
 
         [TestMethod]
         public void ReturnDivisionTypeWithProvidedId()
