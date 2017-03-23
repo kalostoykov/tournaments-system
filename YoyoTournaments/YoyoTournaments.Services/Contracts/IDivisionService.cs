@@ -9,6 +9,6 @@ namespace YoyoTournaments.Services.Contracts
 {
     public interface IDivisionService
     {
-        int CreateDivisionsForTournament(Guid tournamentId);
+        Division GetDivisionById(Guid id);
     }
 }

@@ -2,21 +2,21 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Moq;
+using MSTestExtensions;
 using YoyoTournaments.Data.Contracts;
 using YoyoTournaments.Services;
-using YoyoTournaments.Models;
-using YoyoTournaments.WebClient.Tests.Helpers;
+using Moq;
+using YoyoTournaments.Services.Contracts;
 
-namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
+namespace YoyoTournaments.WebClient.Tests.Services.TournamentServiceTests
 {
     /// <summary>
-    /// Summary description for GetDivisionTypeById_Should
+    /// Summary description for Constructor_Should
     /// </summary>
     [TestClass]
-    public class GetDivisionTypeById_Should
+    public class Constructor_Should
     {
-        public GetDivisionTypeById_Should()
+        public Constructor_Should()
         {
             //
             // TODO: Add constructor logic here
@@ -64,47 +64,37 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
         #endregion
 
         [TestMethod]
-        public void ReturnDivisionTypeWithProvidedId()
+        public void ThrowExceptionWhenDivisionTypeServiceIsNull()
         {
-            //Arrange
-            Guid id = Guid.NewGuid();
-            DivisionType expectedDivisionType = new DivisionType() { Id = id, Name = "Test", Description = "Test" };
-
-            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(new List<DivisionType>() { expectedDivisionType });
-            divisionTypeDbSetMock.Setup(x => x.Find(expectedDivisionType.Id)).Returns(expectedDivisionType);
-
+            // Arrange
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
 
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
-
-            //Act
-            var actualDivisionType = divisionTypeService.GetDivisionTypeById(id);
-
-            //Assert
-            Assert.AreSame(expectedDivisionType, actualDivisionType);
+            // Assert
+            ThrowsAssert.Throws<ArgumentNullException>(() => new TournamentService(yoyoTournamentsDbContextMock.Object, null));
         }
 
         [TestMethod]
-        public void ReturnNullWhenDivisionTypeWithIdIsNotFound()
+        public void ThrowExceptionWhenDbContextIsNull()
+        {
+            // Arrange
+            var divisionTypeServiceMock = new Mock<IDivisionTypeService>();
+
+            // Assert
+            ThrowsAssert.Throws<ArgumentNullException>(() => new TournamentService(null, divisionTypeServiceMock.Object));
+        }
+
+        [TestMethod]
+        public void ReturnAnInstance_WhenDbContextIsPassed()
         {
             //Arrange
-            Guid id = Guid.NewGuid();
-            DivisionType divisionType = new DivisionType() { Id = id, Name = "Test", Description = "Test" };
-
-            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(new List<DivisionType>() { divisionType });
-            divisionTypeDbSetMock.Setup(x => x.Find(Guid.NewGuid())).Returns((DivisionType)null);
-
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
-
-            var divisionTypeService = new DivisionTypeService(yoyoTournamentsDbContextMock.Object);
+            var divisionTypeServiceMock = new Mock<IDivisionTypeService>();
 
             //Act
-            var actualDivisionType = divisionTypeService.GetDivisionTypeById(id);
+            var divisionTypeService = new TournamentService(yoyoTournamentsDbContextMock.Object, divisionTypeServiceMock.Object);
 
             //Assert
-            Assert.IsNull(actualDivisionType);
+            Assert.IsNotNull(divisionTypeService);
         }
     }
 }

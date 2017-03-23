@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,37 +13,25 @@ namespace YoyoTournaments.Services
     public class DivisionService : IDivisionService
     {
         private readonly IYoyoTournamentsDbContext dbContext;
-        private readonly IDivisionTypeService divisionTypeService;
 
-        public DivisionService(IYoyoTournamentsDbContext dbContext, IDivisionTypeService divisionTypeService)
+        public DivisionService(IYoyoTournamentsDbContext dbContext)
         {
+            Guard.WhenArgument(dbContext, nameof(dbContext)).IsNull().Throw();
+
             this.dbContext = dbContext;
-            this.divisionTypeService = divisionTypeService;
         }
 
-        public int CreateDivisionsForTournament(Guid tournamentId)
+        public Division GetDivisionById(Guid id)
         {
-            Tournament foundTournament = this.dbContext.Tournaments.Find(tournamentId);
+            Division result = null;
 
-            if (foundTournament == null)
+            if (id != null)
             {
-                return 0;
+                result = this.dbContext.Divisions
+                 .Find(id);
             }
 
-            var divisionTypes = this.divisionTypeService.GetAllDivisionTypes().ToList();
-
-            foreach (var dt in divisionTypes)
-            {
-                Division division = new Division
-                {
-                    DivisionTypeId = dt.Id,
-                    TournamentId = tournamentId
-                };
-
-                this.dbContext.Divisions.Add(division);
-            }
-
-            return this.dbContext.SaveChanges();
+            return result;
         }
     }
 }

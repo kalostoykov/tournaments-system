@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,6 +17,9 @@ namespace YoyoTournaments.Services
 
         public TournamentService(IYoyoTournamentsDbContext dbContext, IDivisionTypeService divisionTypeService)
         {
+            Guard.WhenArgument(dbContext, nameof(dbContext)).IsNull().Throw();
+            Guard.WhenArgument(divisionTypeService, nameof(divisionTypeService)).IsNull().Throw();
+
             this.dbContext = dbContext;
             this.divisionTypeService = divisionTypeService;
         }

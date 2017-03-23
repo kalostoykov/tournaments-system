@@ -110,9 +110,13 @@
     <Compile Include="Services\CountyServiceTests\Constructor_Should.cs" />
     <Compile Include="Services\CountyServiceTests\GetAllCountries_Should.cs" />
     <Compile Include="Services\CountyServiceTests\GetCountryById_Should.cs" />
+    <Compile Include="Services\DivisionServiceTests\Constructor_Should.cs" />
+    <Compile Include="Services\DivisionServiceTests\GetDivisionById_Should.cs" />
     <Compile Include="Services\DivisionTypeServiceTests\Constructor_Should.cs" />
     <Compile Include="Services\DivisionTypeServiceTests\GetAllDivisionTypes_Should.cs" />
     <Compile Include="Services\DivisionTypeServiceTests\GetDivisionTypeById_Should.cs" />
+    <Compile Include="Services\TournamentServiceTests\Constructor_Should.cs" />
+    <Compile Include="Services\TournamentServiceTests\GetTournamentById_Should.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
