@@ -43,7 +43,16 @@ namespace YoyoTournaments.WebClient.Controllers
 
         public ActionResult Division(Guid id)
         {
-            return View();
+            var division = this.divisionService.GetDivisionById(id);
+
+            var viewModel = new DivisionDetailsViewModel()
+            {
+                DivisionType = division.DivisionType,
+                TournamentId = division.TournamentId,
+                Users = division.Users.ToList()
+            };
+
+            return View(viewModel);
         }
     }
 }

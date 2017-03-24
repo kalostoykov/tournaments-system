@@ -1,0 +1,22 @@
+﻿@model YoyoTournaments.WebClient.Models.DivisionDetailsViewModel
+
+@{
+    ViewBag.Title = "Division";
+}
+
+<h2>Division @Model.DivisionType.Name</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DivisionType.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DivisionType.Name)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to tournament", "Details/" + Model.TournamentId, new { }, new { @class = "btn btn-danger" })
+</p>
