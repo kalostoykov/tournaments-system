@@ -39,7 +39,18 @@ namespace YoyoTournaments.Services
 
         public void CreateTournament(string name, string place, DateTime startDate, DateTime endDate, Guid countryId)
         {
-            //SHOULD validate the input
+            Guard.WhenArgument(name, nameof(name)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(place, nameof(place)).IsNullOrEmpty().Throw();
+            Guard.WhenArgument(startDate, nameof(startDate)).IsLessThan(DateTime.Now).Throw();
+            Guard.WhenArgument(endDate, nameof(endDate)).IsLessThan(startDate).Throw();
+
+            var divisionTypes = this.divisionTypeService.GetAllDivisionTypes().ToList();
+
+            if (divisionTypes.Count == 0)
+            {
+                throw new NullReferenceException("No division types was found!");
+            }
+
             var tournament = new Tournament
             {
                 Name = name,
@@ -48,8 +59,6 @@ namespace YoyoTournaments.Services
                 EndDate = endDate,
                 CountryId = countryId
             };
-
-            var divisionTypes = this.divisionTypeService.GetAllDivisionTypes().ToList();
 
             foreach (var dt in divisionTypes)
             {

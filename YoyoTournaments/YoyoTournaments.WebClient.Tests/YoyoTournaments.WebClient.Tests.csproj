@@ -116,6 +116,7 @@
     <Compile Include="Services\DivisionTypeServiceTests\GetAllDivisionTypes_Should.cs" />
     <Compile Include="Services\DivisionTypeServiceTests\GetDivisionTypeById_Should.cs" />
     <Compile Include="Services\TournamentServiceTests\Constructor_Should.cs" />
+    <Compile Include="Services\TournamentServiceTests\CreateTournament_Should.cs" />
     <Compile Include="Services\TournamentServiceTests\GetTournamentById_Should.cs" />
   </ItemGroup>
   <ItemGroup>

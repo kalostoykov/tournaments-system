@@ -64,7 +64,7 @@ namespace YoyoTournaments.WebClient.Tests.Services.TournamentServiceTests
         #endregion
 
         [TestMethod]
-        public void ThrowExceptionWhenDivisionTypeServiceIsNull()
+        public void ThrowException_WhenDivisionTypeServiceIsNull()
         {
             // Arrange
             var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
@@ -74,7 +74,7 @@ namespace YoyoTournaments.WebClient.Tests.Services.TournamentServiceTests
         }
 
         [TestMethod]
-        public void ThrowExceptionWhenDbContextIsNull()
+        public void ThrowException_WhenDbContextIsNull()
         {
             // Arrange
             var divisionTypeServiceMock = new Mock<IDivisionTypeService>();

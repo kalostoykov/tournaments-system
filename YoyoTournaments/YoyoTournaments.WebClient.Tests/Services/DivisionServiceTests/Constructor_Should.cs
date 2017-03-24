@@ -63,7 +63,7 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionServiceTests
         #endregion
 
         [TestMethod]
-        public void ThrowExceptionWhenDbContextIsNull()
+        public void ThrowException_WhenDbContextIsNull()
         {
             // Assert
             ThrowsAssert.Throws<ArgumentNullException>(() => new DivisionService(null));
