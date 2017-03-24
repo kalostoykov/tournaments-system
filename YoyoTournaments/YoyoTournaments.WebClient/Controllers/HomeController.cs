@@ -8,6 +8,7 @@ namespace YoyoTournaments.WebClient.Controllers
 {
     public class HomeController : Controller
     {
+        [OutputCache(Duration = 10)]
         public ActionResult Index()
         {
             return View();
