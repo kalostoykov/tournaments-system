@@ -10,12 +10,12 @@ using YoyoTournaments.WebClient.Areas.Administration.Models;
 
 namespace YoyoTournaments.WebClient.Areas.Administration.Controllers
 {
-    public class TournamentController : Controller
+    public class AdminTournamentController : Controller
     {
         private readonly ICountryService countryService;
         private readonly ITournamentService tournamentService;
 
-        public TournamentController(ITournamentService tournamentService, ICountryService countryService)
+        public AdminTournamentController(ITournamentService tournamentService, ICountryService countryService)
         {
             this.tournamentService = tournamentService;
             this.countryService = countryService;
