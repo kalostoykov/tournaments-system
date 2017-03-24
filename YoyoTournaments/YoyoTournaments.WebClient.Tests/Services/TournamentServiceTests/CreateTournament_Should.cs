@@ -157,8 +157,8 @@ namespace YoyoTournaments.WebClient.Tests.Services.TournamentServiceTests
             {
                 Name = "Test name",
                 Place = "Test place",
-                StartDate = new DateTime(2017, 4, 3),
-                EndDate = new DateTime(2017, 3, 3),
+                StartDate = DateTime.Now.Add(new TimeSpan(2, 0, 0, 0, 0)),
+                EndDate = DateTime.Now.Add(new TimeSpan(1, 0, 0, 0, 0)),
                 CountryId = Guid.NewGuid()
             };
 
@@ -177,50 +177,38 @@ namespace YoyoTournaments.WebClient.Tests.Services.TournamentServiceTests
             );
         }
 
-        //[TestMethod]
-        //public void ThrowArgumentException_WhenTheListWIthDivisionTypesIsNullOrEmpty()
-        //{
-        //    // Arrange
-        //    var expectedTournament = new Tournament
-        //    {
-        //        Name = "Test name",
-        //        Place = "Test place",
-        //        StartDate = DateTime.Now,
-        //        EndDate = DateTime.Now.Add(new TimeSpan(1, 0, 0, 0, 0)),
-        //        CountryId = Guid.NewGuid()
-        //    };
+        [TestMethod]
+        public void ThrowArgumentException_WhenTheListWIthDivisionTypesIsNullOrEmpty()
+        {
+            // Arrange
+            var expectedTournament = new Tournament
+            {
+                Name = "Test name",
+                Place = "Test place",
+                StartDate = DateTime.Now.Add(new TimeSpan(1, 0, 0, 0, 0)),
+                EndDate = DateTime.Now.Add(new TimeSpan(2, 0, 0, 0, 0)),
+                CountryId = Guid.NewGuid()
+            };
 
-        //    var divisionTypes = new List<DivisionType>()
-        //    {
-        //        new DivisionType()
-        //        {
-        //            Id = Guid.NewGuid(),
-        //            Name = "TestName",
-        //            Description = "TestName"
-        //        }
-        //    };
+            var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(new List<DivisionType>());
+
+            var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
+            yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
+
+            var divisionTypeServiceMock = new Mock<IDivisionTypeService>();
+            divisionTypeServiceMock.Setup(x => x.GetAllDivisionTypes()).Returns(new List<DivisionType>());
 
 
-        //    var divisionTypeDbSetMock = QueryableDbSetMock.GetQueryableMockDbSet(divisionTypes);
+            var tournamentService = new TournamentService(yoyoTournamentsDbContextMock.Object, divisionTypeServiceMock.Object);
 
-        //    var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-        //    yoyoTournamentsDbContextMock.Setup(x => x.DivisionTypes).Returns(divisionTypeDbSetMock.Object);
-
-        //    var divisionTypeServiceMock = new Mock<IDivisionTypeService>();
-        //    divisionTypeServiceMock.SetupAllProperties();
-        //    divisionTypeServiceMock.Setup(x => x.GetAllDivisionTypes()).Returns(divisionTypeDbSetMock.Object);
-
-
-        //    var tournamentService = new TournamentService(yoyoTournamentsDbContextMock.Object, divisionTypeServiceMock.Object);
-
-        //    // Act & Assert
-        //    ThrowsAssert.Throws<NullReferenceException>(
-        //        () => tournamentService.CreateTournament(expectedTournament.Name,
-        //            expectedTournament.Place,
-        //            expectedTournament.StartDate,
-        //            expectedTournament.EndDate,
-        //            expectedTournament.CountryId)
-        //    );
-        //}
+            // Act & Assert
+            ThrowsAssert.Throws<NullReferenceException>(
+                () => tournamentService.CreateTournament(expectedTournament.Name,
+                    expectedTournament.Place,
+                    expectedTournament.StartDate,
+                    expectedTournament.EndDate,
+                    expectedTournament.CountryId)
+            );
+        }
     }
 }

@@ -39,6 +39,8 @@ namespace YoyoTournaments.Services
 
         public void CreateTournament(string name, string place, DateTime startDate, DateTime endDate, Guid countryId)
         {
+            // TODO: Refactor this method if I can
+
             Guard.WhenArgument(name, nameof(name)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(place, nameof(place)).IsNullOrEmpty().Throw();
             Guard.WhenArgument(startDate, nameof(startDate)).IsLessThan(DateTime.Now).Throw();
@@ -48,7 +50,7 @@ namespace YoyoTournaments.Services
 
             if (divisionTypes.Count == 0)
             {
-                throw new NullReferenceException("No division types was found!");
+                throw new NullReferenceException("No division types were found!");
             }
 
             var tournament = new Tournament
