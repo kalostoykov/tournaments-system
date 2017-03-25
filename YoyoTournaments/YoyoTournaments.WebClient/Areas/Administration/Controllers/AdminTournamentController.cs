@@ -10,6 +10,7 @@ using YoyoTournaments.WebClient.Areas.Administration.Models;
 
 namespace YoyoTournaments.WebClient.Areas.Administration.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class AdminTournamentController : Controller
     {
         private readonly ICountryService countryService;
