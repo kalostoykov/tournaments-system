@@ -105,6 +105,5 @@ namespace YoyoTournaments.Services
 
             dbContext.SaveChanges();
         }
-
     }
 }

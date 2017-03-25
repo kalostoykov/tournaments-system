@@ -17,11 +17,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Yoyo Tournaments", "Index", "Home", new { area = "", controller = "Home" }, new { @class = "navbar-brand" })
+                <a href='@Url.Action("Index", "Home", new { area = "", controller = "Home" })' class="nav navbar-brand">
+                    <img height="30" src='@Url.Content("https://images.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.pixabay.com%2Fphoto%2F2014%2F04%2F02%2F16%2F16%2Fyoyo-306751_640.png&f=1")' />
+                </a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Divisions", "Index", new { area = "", controller = "DivisionType" })</li>
+                    <li>@Html.ActionLink("Divisions information", "Index", new { area = "", controller = "DivisionType" })</li>
                     <li>@Html.ActionLink("Tournaments", "Index", new { area = "", controller = "Tournament" })</li>
                     <li>@Html.ActionLink("About", "About", new { area = "", controller = "Home" })</li>
                     <li>@Html.ActionLink("Contact", "Contact", new { area = "", controller = "Home" })</li>

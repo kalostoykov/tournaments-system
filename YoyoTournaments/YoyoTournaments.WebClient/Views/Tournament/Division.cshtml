@@ -16,19 +16,43 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.DivisionType.Name)
+            @Html.DisplayNameFor(model => model.DivisionType.Name):
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.DivisionType.Name)
+            @Html.DisplayFor(model => model.DivisionType.Name):
         </dd>
     </dl>
 </div>
 <hr />
-@foreach (var user in Model.Users)
-{
-    @Html.DisplayFor(modelItem => user.FirstName);
-}
+<table class="table">
+    <tr>
+        <th>
+            <strong>First name</strong>
+        </th>
+        <th>
+            <strong>Last name</strong>
+        </th>
+        <th>
+            <strong>Country</strong>
+        </th>
+    </tr>
+
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => user.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => user.Country.Name)
+            </td>
+        </tr>
+    }
+</table>
 <div>
     @Html.PagedListPager(Model.Users, page => Url.Action("Division", new { page, pageSize = Model.Users.PageSize }))
 </div>
