@@ -19,6 +19,8 @@ namespace YoyoTournaments.Data.Contracts
 
         IDbSet<Division> Divisions { get; set; }
 
+        IDbSet<ApplicationUser> Users { get; set; }
+
         int SaveChanges();
     }
 }

@@ -23,4 +23,18 @@ namespace YoyoTournaments.WebClient.Models
 
         public List<Division> DivisionsInTournament { get; set; }
     }
+    public class TournamentGridViewModel
+    {
+        public Guid Id { get; set; }
+
+        public string Name { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime StartDate { get; set; }
+
+        [DataType(DataType.Date)]
+        public DateTime EndDate { get; set; }
+
+        public Country Country { get; set; }
+    }
 }

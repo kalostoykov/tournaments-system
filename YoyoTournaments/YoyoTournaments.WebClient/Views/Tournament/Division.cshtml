@@ -1,4 +1,5 @@
-﻿@model YoyoTournaments.WebClient.Models.DivisionDetailsViewModel
+﻿@using PagedList.Mvc;
+@model YoyoTournaments.WebClient.Models.DivisionDetailsViewModel
 
 @{
     ViewBag.Title = "Division";
@@ -8,7 +9,7 @@
 
 @if (User.Identity.IsAuthenticated)
 {
-    @(Html.ActionLink("Sign In", "SignIn", new { }, new { @class = "btn btn-success" }));
+    @(Html.ActionLink("Sign In", "SignIn", new { divisionId = Model.Id }, new { @class = "btn btn-success" }));
 }
 
 <div>
@@ -23,6 +24,15 @@
         </dd>
     </dl>
 </div>
+<hr />
+@foreach (var user in Model.Users)
+{
+    @Html.DisplayFor(modelItem => user.FirstName);
+}
+<div>
+    @Html.PagedListPager(Model.Users, page => Url.Action("Division", new { page, pageSize = Model.Users.PageSize }))
+</div>
+<hr />
 <p>
     @Html.ActionLink("Back to tournament", "Details/" + Model.TournamentId, new { }, new { @class = "btn btn-danger" })
 </p>

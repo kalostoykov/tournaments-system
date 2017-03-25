@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
+using PagedList;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -19,9 +22,36 @@ namespace YoyoTournaments.WebClient.Controllers
             this.divisionService = divisionService;
         }
 
-        public ActionResult Index()
+        public ActionResult Index(int page = 1, int pageSize = 10)
         {
-            return View();
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 1;
+            }
+
+            var tournaments = this.tournamentService.GetAllTournaments();
+            var viewModel = new List<TournamentGridViewModel>();
+
+            foreach (var tournament in tournaments)
+            {
+                var tournamentViewModel = new TournamentGridViewModel
+                {
+                    Id = tournament.Id,
+                    Name = tournament.Name,
+                    Country = tournament.Country,
+                    StartDate = tournament.StartDate,
+                    EndDate = tournament.EndDate
+                };
+
+                viewModel.Add(tournamentViewModel);
+            }
+
+            return this.View(viewModel.ToPagedList(page, pageSize));
         }
 
         public ActionResult Details(Guid id)
@@ -38,21 +68,45 @@ namespace YoyoTournaments.WebClient.Controllers
                 DivisionsInTournament = tournament.DivisionsInTournament.ToList()
             };
 
-            return View(viewModel);
+            return this.View(viewModel);
         }
 
-        public ActionResult Division(Guid id)
+        public ActionResult Division(Guid id, int page = 1, int pageSize = 10)
         {
+            if (id == Guid.Empty)
+            {
+                return this.View("Error");
+            }
+
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 1;
+            }
+
             var division = this.divisionService.GetDivisionById(id);
 
             var viewModel = new DivisionDetailsViewModel()
             {
+                Id = division.Id,
                 DivisionType = division.DivisionType,
                 TournamentId = division.TournamentId,
-                Users = division.Users.ToList()
+                Users = division.Users.ToPagedList(page, pageSize)
             };
 
-            return View(viewModel);
+            return this.View(viewModel);
+        }
+
+        public ActionResult SignIn(string divisionId)
+        {
+            string userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            this.divisionService.AddUserToDivision(userId, Guid.Parse(divisionId));
+
+            return this.Redirect("~/Tournament");
         }
     }
 }

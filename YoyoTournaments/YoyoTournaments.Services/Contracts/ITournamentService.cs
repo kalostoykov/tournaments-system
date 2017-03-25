@@ -9,6 +9,8 @@ namespace YoyoTournaments.Services.Contracts
 {
     public interface ITournamentService
     {
+        IEnumerable<Tournament> GetAllTournaments();
+
         Tournament GetTournamentById(Guid id);
 
         void CreateTournament(string name, string place, DateTime startDate, DateTime endDate, Guid countryId);

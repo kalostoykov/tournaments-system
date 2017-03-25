@@ -24,6 +24,13 @@ namespace YoyoTournaments.Services
             this.divisionTypeService = divisionTypeService;
         }
 
+        public IEnumerable<Tournament> GetAllTournaments()
+        {
+            var result = this.dbContext.Tournaments.ToList();
+
+            return result;
+        }
+
         public Tournament GetTournamentById(Guid id)
         {
             Tournament result = null;

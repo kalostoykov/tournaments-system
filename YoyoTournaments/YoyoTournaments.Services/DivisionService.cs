@@ -33,5 +33,18 @@ namespace YoyoTournaments.Services
 
             return result;
         }
+
+        public void AddUserToDivision(string  userId, Guid divisionId)
+        {
+            //guards
+            Guard.WhenArgument(userId, nameof(userId)).IsNull().Throw();
+
+            var division = this.dbContext.Divisions.Find(divisionId);
+            var userToAdd = this.dbContext.Users.Find(userId);
+
+            division.Users.Add(userToAdd);
+
+            this.dbContext.SaveChanges();
+        }
     }
 }

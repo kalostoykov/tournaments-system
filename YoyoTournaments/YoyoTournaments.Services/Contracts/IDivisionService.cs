@@ -10,5 +10,6 @@ namespace YoyoTournaments.Services.Contracts
     public interface IDivisionService
     {
         Division GetDivisionById(Guid id);
+        void AddUserToDivision(string userId, Guid divisionId);
     }
 }

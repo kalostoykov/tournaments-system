@@ -7,10 +7,11 @@ using System.Web.Mvc;
 using YoyoTournaments.Models;
 using YoyoTournaments.Services.Contracts;
 using YoyoTournaments.WebClient.Areas.Administration.Models;
+using YoyoTournaments.WebClient.CustomAttributes;
 
 namespace YoyoTournaments.WebClient.Areas.Administration.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [AuthorizeAdmin(Roles = "Admin")]
     public class AdminTournamentController : Controller
     {
         private readonly ICountryService countryService;
