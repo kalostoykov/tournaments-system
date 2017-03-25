@@ -24,7 +24,7 @@ namespace YoyoTournaments.WebClient
                       "~/Scripts/respond.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootswatch-darkly-bootstrap.min.css",
                       "~/Content/site.css"));
         }
     }
