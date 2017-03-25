@@ -262,6 +262,7 @@
     <Content Include="Views\DivisionType\Details.cshtml" />
     <Content Include="Views\Tournament\Details.cshtml" />
     <Content Include="Views\Tournament\Division.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DivisionTypeGridViewModel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

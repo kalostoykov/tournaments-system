@@ -1,0 +1,10 @@
+﻿@model YoyoTournaments.WebClient.Models.DivisionTypeGridViewModel
+
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => Model.Name)
+        </td>
+        <td>
+            @Html.ActionLink("More information", "Details", new { id = Model.Id }, new { @class = "btn btn-default" })
+        </td>
+    </tr>
