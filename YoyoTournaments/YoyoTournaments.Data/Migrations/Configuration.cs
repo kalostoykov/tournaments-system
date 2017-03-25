@@ -1,5 +1,7 @@
 namespace YoyoTournaments.Data.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using System;
     using System.Collections.Generic;
@@ -29,6 +31,7 @@ namespace YoyoTournaments.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
             if (!context.Countries.Any())
             {
                 var countries = new string[]
@@ -103,38 +106,32 @@ namespace YoyoTournaments.Data.Migrations
                 context.SaveChanges();
             }
 
-            if (!context.Tournaments.Any())
+            if (!context.Roles.Any())
             {
-                //var testTournament = new Tournament
-                //{
-                //    Name = "YYC Test",
-                //    CountryId = new Guid("313B05CC-D00F-E711-82BB-F0761CBCB6A3"),
-                //    Place = "Test place",
-                //    StartDate = DateTime.Now,
-                //    EndDate = DateTime.Now,
-                //};
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                var adminRole = new IdentityRole() { Name = "Admin" };
 
-                //context.Tournaments.Add(testTournament);
+                roleManager.Create(adminRole);
 
-                //context.SaveChanges();
+                var userStore = new UserStore<ApplicationUser>(context);
+                var userManager = new UserManager<ApplicationUser>(userStore);
+                var adminEmail = "admin@yoyo.com";
+                var adminCountry = context.Countries.First();
+                var adminUser = new ApplicationUser()
+                {
+                    Email = adminEmail,
+                    UserName = adminEmail,
+                    Country = adminCountry,
+                    FirstName = "Admin",
+                    LastName = "Admin"
+                };
+
+                userManager.Create(adminUser, "123456q");
+                userManager.AddToRole(adminUser.Id, "Admin");
+
+                context.SaveChanges();
             }
-
-            //var testDivisionInTournament = new Division {
-            //    DivisionTypeId = 1,
-            //    TournamentId = 1
-            //}
-
-
-            //testDivisionInTournament.Users.Add(testPlayer);
-
-            //countries.ForEach(c => context.Countries.Add(c));
-            //context.SaveChanges();
-            //players.ForEach(p => context.Users.Add(p));
-            //context.SaveChanges();
-            //context.Tournaments.Add(testTournament);
-            //context.SaveChanges();
-            //context.Divisions.Add(testDivisionInTournament);
-            //context.SaveChanges();
         }
     }
 }
