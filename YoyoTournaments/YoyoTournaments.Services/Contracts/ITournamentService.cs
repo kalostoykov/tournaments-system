@@ -11,6 +11,8 @@ namespace YoyoTournaments.Services.Contracts
     {
         IEnumerable<Tournament> GetAllTournaments();
 
+        IEnumerable<Tournament> GetAllTournamentsWIthPaging(out int count, int page = 1, int pageSize = 10);
+
         Tournament GetTournamentById(Guid id);
 
         void CreateTournament(string name, string place, DateTime startDate, DateTime endDate, Guid countryId);

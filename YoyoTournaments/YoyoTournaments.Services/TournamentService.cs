@@ -31,6 +31,29 @@ namespace YoyoTournaments.Services
             return result;
         }
 
+        public IEnumerable<Tournament> GetAllTournamentsWIthPaging(out int count, int page = 1, int pageSize = 10)
+        {
+            if (page < 1)
+            {
+                page = 1;
+            }
+
+            if (pageSize < 1)
+            {
+                pageSize = 1;
+            }
+
+            var result = this.dbContext.Tournaments
+                .OrderBy(x => x.StartDate)
+                .Skip(pageSize * (page - 1))
+                .Take(pageSize)
+                .ToList();
+
+            count = this.dbContext.Tournaments.Count();
+
+            return result;
+        }
+
         public Tournament GetTournamentById(Guid id)
         {
             Tournament result = null;
@@ -82,5 +105,6 @@ namespace YoyoTournaments.Services
 
             dbContext.SaveChanges();
         }
+
     }
 }

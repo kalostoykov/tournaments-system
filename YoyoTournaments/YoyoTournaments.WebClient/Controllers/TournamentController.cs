@@ -34,8 +34,9 @@ namespace YoyoTournaments.WebClient.Controllers
                 pageSize = 1;
             }
 
-            var tournaments = this.tournamentService.GetAllTournaments();
-            var viewModel = new List<TournamentGridViewModel>();
+            int count = 0;
+            var tournaments = this.tournamentService.GetAllTournamentsWIthPaging(out count, page, pageSize);
+            var tournamentsModel = new List<TournamentGridViewModel>();
 
             foreach (var tournament in tournaments)
             {
@@ -48,10 +49,12 @@ namespace YoyoTournaments.WebClient.Controllers
                     EndDate = tournament.EndDate
                 };
 
-                viewModel.Add(tournamentViewModel);
+                tournamentsModel.Add(tournamentViewModel);
             }
 
-            return this.View(viewModel.ToPagedList(page, pageSize));
+            var viewModel = new StaticPagedList<TournamentGridViewModel>(tournamentsModel, page, pageSize, count);
+
+            return this.View(viewModel);
         }
 
         public ActionResult Details(Guid id)
