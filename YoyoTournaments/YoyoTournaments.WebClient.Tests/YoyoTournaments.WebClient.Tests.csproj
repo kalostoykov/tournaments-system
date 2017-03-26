@@ -45,6 +45,7 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>False</Private>
@@ -110,6 +111,7 @@
     <Compile Include="Services\CountyServiceTests\Constructor_Should.cs" />
     <Compile Include="Services\CountyServiceTests\GetAllCountries_Should.cs" />
     <Compile Include="Services\CountyServiceTests\GetCountryById_Should.cs" />
+    <Compile Include="Services\DivisionServiceTests\AddUserToDivision_Should.cs" />
     <Compile Include="Services\DivisionServiceTests\Constructor_Should.cs" />
     <Compile Include="Services\DivisionServiceTests\GetDivisionById_Should.cs" />
     <Compile Include="Services\DivisionTypeServiceTests\Constructor_Should.cs" />
@@ -117,6 +119,7 @@
     <Compile Include="Services\DivisionTypeServiceTests\GetDivisionTypeById_Should.cs" />
     <Compile Include="Services\TournamentServiceTests\Constructor_Should.cs" />
     <Compile Include="Services\TournamentServiceTests\CreateTournament_Should.cs" />
+    <Compile Include="Services\TournamentServiceTests\GetAllTournamentsWIthPaging_Should.cs" />
     <Compile Include="Services\TournamentServiceTests\GetTournamentById_Should.cs" />
   </ItemGroup>
   <ItemGroup>

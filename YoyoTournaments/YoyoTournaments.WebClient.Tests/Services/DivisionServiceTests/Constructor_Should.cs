@@ -65,7 +65,7 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionServiceTests
         [TestMethod]
         public void ThrowException_WhenDbContextIsNull()
         {
-            // Assert
+            // Arrange & Act & Assert
             ThrowsAssert.Throws<ArgumentNullException>(() => new DivisionService(null));
         }
 

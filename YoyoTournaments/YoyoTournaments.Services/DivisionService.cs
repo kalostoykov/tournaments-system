@@ -34,17 +34,29 @@ namespace YoyoTournaments.Services
             return result;
         }
 
-        public void AddUserToDivision(string  userId, Guid divisionId)
+        public int AddUserToDivision(string  userId, Guid divisionId)
         {
             //guards
-            Guard.WhenArgument(userId, nameof(userId)).IsNull().Throw();
+            Guard.WhenArgument(userId, nameof(userId)).IsNullOrEmpty().Throw();
 
-            var division = this.dbContext.Divisions.Find(divisionId);
+            //var division = this.dbContext.Divisions.Find(divisionId);
+            var division = this.GetDivisionById(divisionId);
+
+            if (division == null)
+            {
+                return 0;
+            }
+
             var userToAdd = this.dbContext.Users.Find(userId);
+
+            if (userToAdd == null)
+            {
+                return 0;
+            }
 
             division.Users.Add(userToAdd);
 
-            this.dbContext.SaveChanges();
+            return this.dbContext.SaveChanges();
         }
     }
 }

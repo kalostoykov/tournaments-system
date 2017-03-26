@@ -11,6 +11,6 @@ namespace YoyoTournaments.Services.Contracts
     {
         Division GetDivisionById(Guid id);
 
-        void AddUserToDivision(string userId, Guid divisionId);
+        int AddUserToDivision(string userId, Guid divisionId);
     }
 }

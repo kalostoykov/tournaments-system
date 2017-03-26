@@ -86,7 +86,7 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionTypeServiceTests
         }
 
         [TestMethod]
-        public void ReturnNullWhenDivisionTypeWithIdIsNotFound()
+        public void ReturnNull_WhenDivisionTypeWithIdIsNotFound()
         {
             //Arrange
             Guid id = Guid.NewGuid();
