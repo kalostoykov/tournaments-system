@@ -9,8 +9,6 @@ namespace YoyoTournaments.Services.Contracts
 {
     public interface ITournamentService
     {
-        IEnumerable<Tournament> GetAllTournaments();
-
         IEnumerable<Tournament> GetAllTournamentsWIthPaging(out int count, int page = 1, int pageSize = 10);
 
         Tournament GetTournamentById(Guid id);
