@@ -10,7 +10,22 @@ namespace YoyoTournaments.WebClient.Controllers
     {
         public ActionResult Index()
         {
-            return View("Error");
+            return this.View("Error");
+        }
+
+        public ActionResult Page400()
+        {
+            return this.View();
+        }
+
+        public ActionResult Page404()
+        {
+            return this.View();
+        }
+
+        public ActionResult Page500()
+        {
+            return this.View();
         }
     }
 }
