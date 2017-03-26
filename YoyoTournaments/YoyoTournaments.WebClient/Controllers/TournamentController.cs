@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using Bytes2you.Validation;
+using Microsoft.AspNet.Identity;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ namespace YoyoTournaments.WebClient.Controllers
 
         public TournamentController(ITournamentService tournamentService, IDivisionService divisionService)
         {
+            Guard.WhenArgument(tournamentService, nameof(tournamentService)).IsNull().Throw();
+            Guard.WhenArgument(divisionService, nameof(divisionService)).IsNull().Throw();
+
             this.tournamentService = tournamentService;
             this.divisionService = divisionService;
         }
@@ -58,6 +62,11 @@ namespace YoyoTournaments.WebClient.Controllers
 
         public ActionResult Details(Guid id)
         {
+            if (id == Guid.Empty)
+            {
+                return this.View("Error");
+            }
+
             var tournament = this.tournamentService.GetTournamentById(id);
 
             var viewModel = new TournamentDetailsViewModel()
@@ -103,8 +112,14 @@ namespace YoyoTournaments.WebClient.Controllers
             return this.View(viewModel);
         }
 
+        [Authorize]
         public ActionResult SignIn(string divisionId)
         {
+            if (Guid.Parse(divisionId) == Guid.Empty)
+            {
+                return this.View("Error");
+            }
+
             string userId = System.Web.HttpContext.Current.User.Identity.GetUserId();
             this.divisionService.AddUserToDivision(userId, Guid.Parse(divisionId));
 

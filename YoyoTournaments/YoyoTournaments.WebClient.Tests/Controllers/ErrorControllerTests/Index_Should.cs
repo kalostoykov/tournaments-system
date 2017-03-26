@@ -2,20 +2,18 @@
 using System.Text;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MSTestExtensions;
-using YoyoTournaments.Services;
-using YoyoTournaments.Data.Contracts;
-using Moq;
+using YoyoTournaments.WebClient.Controllers;
+using TestStack.FluentMVCTesting;
 
-namespace YoyoTournaments.WebClient.Tests.Services.DivisionServiceTests
+namespace YoyoTournaments.WebClient.Tests.Controllers.ErrorControllerTests
 {
     /// <summary>
-    /// Summary description for Constructor_Should
+    /// Summary description for Index_Should
     /// </summary>
     [TestClass]
-    public class Constructor_Should
+    public class Index_Should
     {
-        public Constructor_Should()
+        public Index_Should()
         {
             //
             // TODO: Add constructor logic here
@@ -63,36 +61,15 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionServiceTests
         #endregion
 
         [TestMethod]
-        public void ThrowException_WhenDbContextIsNull()
+        public void ReturnDefaultView()
         {
-            // Arrange & Act & Assert
-            ThrowsAssert.Throws<ArgumentNullException>(() => new DivisionService(null));
-        }
+            // Arrange
+            var controller = new ErrorController();
 
-        [TestMethod]
-        public void ReturnAnInstance_WhenDbContextIsPassed()
-        {
-            //Arrange
-            var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-
-            //Act
-            var divisionService = new DivisionService(yoyoTournamentsDbContextMock.Object);
-
-            //Assert
-            Assert.IsNotNull(divisionService);
-        }
-
-        [TestMethod]
-        public void ReturnAnInstanceOfDivisionService_WhenDbContextIsPassed()
-        {
-            //Arrange
-            var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
-
-            //Act
-            var divisionService = new DivisionService(yoyoTournamentsDbContextMock.Object);
-
-            //Assert
-            Assert.IsInstanceOfType(divisionService, typeof(DivisionService));
+            // Act & Assert
+            controller
+                .WithCallTo(x => x.Index())
+                .ShouldRenderView("Error");
         }
     }
 }

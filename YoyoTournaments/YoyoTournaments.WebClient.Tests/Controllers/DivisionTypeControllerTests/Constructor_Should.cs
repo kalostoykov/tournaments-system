@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MSTestExtensions;
 using YoyoTournaments.Services;
-using YoyoTournaments.Data.Contracts;
 using Moq;
+using YoyoTournaments.Data.Contracts;
+using YoyoTournaments.WebClient.Controllers;
+using YoyoTournaments.Services.Contracts;
 
-namespace YoyoTournaments.WebClient.Tests.Services.DivisionServiceTests
+namespace YoyoTournaments.WebClient.Tests.Controllers.DivisionTypeControllerTests
 {
     /// <summary>
     /// Summary description for Constructor_Should
@@ -63,36 +65,36 @@ namespace YoyoTournaments.WebClient.Tests.Services.DivisionServiceTests
         #endregion
 
         [TestMethod]
-        public void ThrowException_WhenDbContextIsNull()
+        public void ThrowArgumentNullExceptionException_WhenDbContextIsNull()
         {
             // Arrange & Act & Assert
-            ThrowsAssert.Throws<ArgumentNullException>(() => new DivisionService(null));
+            ThrowsAssert.Throws<ArgumentNullException>(() => new DivisionTypeController(null));
         }
 
         [TestMethod]
         public void ReturnAnInstance_WhenDbContextIsPassed()
         {
             //Arrange
-            var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
+            var divisionTypeServiceMock = new Mock<IDivisionTypeService>();
 
             //Act
-            var divisionService = new DivisionService(yoyoTournamentsDbContextMock.Object);
+            var controller = new DivisionTypeController(divisionTypeServiceMock.Object);
 
             //Assert
-            Assert.IsNotNull(divisionService);
+            Assert.IsNotNull(controller);
         }
 
         [TestMethod]
-        public void ReturnAnInstanceOfDivisionService_WhenDbContextIsPassed()
+        public void ReturnAnInstanceOfDivisionTypeService_WhenDbContextIsPassed()
         {
             //Arrange
-            var yoyoTournamentsDbContextMock = new Mock<IYoyoTournamentsDbContext>();
+            var divisionTypeServiceMock = new Mock<IDivisionTypeService>();
 
             //Act
-            var divisionService = new DivisionService(yoyoTournamentsDbContextMock.Object);
+            var controller = new DivisionTypeController(divisionTypeServiceMock.Object);
 
             //Assert
-            Assert.IsInstanceOfType(divisionService, typeof(DivisionService));
+            Assert.IsInstanceOfType(controller, typeof(DivisionTypeController));
         }
     }
 }
